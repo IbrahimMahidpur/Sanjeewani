@@ -1,0 +1,142 @@
+version: "3.9"
+
+x-common: &common
+  restart: unless-stopped
+  networks:
+    - sanjeevani
+
+services:
+  # ── API ─────────────────────────────────────────────────────────────────────
+  api:
+    <<: *common
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file: .env
+    environment:
+      - QDRANT_URL=http://qdrant:6333
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      qdrant:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - kb_data:/app/data/kb
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── Frontend Admin UI ────────────────────────────────────────────────────────
+  frontend:
+    <<: *common
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+
+  # ── Vector DB ────────────────────────────────────────────────────────────────
+  qdrant:
+    <<: *common
+    image: qdrant/qdrant:v1.9.2
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/healthz"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Session Cache ─────────────────────────────────────────────────────────────
+  redis:
+    <<: *common
+    image: redis:7.2-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Nginx Reverse Proxy ───────────────────────────────────────────────────────
+  nginx:
+    <<: *common
+    image: nginx:1.25-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./infra/nginx/certs:/etc/nginx/certs:ro
+    depends_on:
+      - api
+      - frontend
+
+  # ── Prometheus ───────────────────────────────────────────────────────────────
+  prometheus:
+    <<: *common
+    image: prom/prometheus:v2.51.2
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./infra/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.retention.time=30d"
+
+  # ── Grafana ──────────────────────────────────────────────────────────────────
+  grafana:
+    <<: *common
+    image: grafana/grafana:10.4.2
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=sanjeevani_admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./infra/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./infra/grafana/datasources.yml:/etc/grafana/provisioning/datasources/ds.yml:ro
+
+  # ── Optional: Local vLLM (comment out if using Groq/Together) ────────────────
+  # vllm:
+  #   <<: *common
+  #   image: vllm/vllm-openai:latest
+  #   ports:
+  #     - "8001:8001"
+  #   environment:
+  #     - MODEL=BioMistral/BioMistral-7B
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [gpu]
+  #   command: --model BioMistral/BioMistral-7B --port 8001 --dtype bfloat16
+
+volumes:
+  qdrant_data:
+  redis_data:
+  kb_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  sanjeevani:
+    driver: bridge

@@ -1,0 +1,108 @@
+# WHO Essential Medicines and Health Information — India Context
+
+## Fever Management
+
+A fever is a body temperature above 38°C (100.4°F). It is the body's natural response to infection.
+
+General management:
+- Rest and drink plenty of fluids (water, ORS, coconut water, fruit juices)
+- Paracetamol (acetaminophen) 500-1000mg every 6-8 hours for adults (maximum 4g/day)
+- For children: paracetamol 10-15 mg/kg every 4-6 hours (syrup form preferred)
+- Sponge the body with lukewarm (not cold) water if temperature exceeds 39°C
+- Avoid aspirin in children under 12 years (risk of Reye's syndrome)
+
+Seek immediate medical care if:
+- Fever exceeds 39.5°C (103°F) in adults or 38°C in infants under 3 months
+- Fever lasts more than 3 days
+- Accompanied by severe headache, stiff neck, rash, confusion, or difficulty breathing
+- No improvement after 48 hours of treatment
+
+## Diabetes Management
+
+Type 2 diabetes affects over 77 million Indians. Key management principles:
+
+Diet:
+- Limit refined carbohydrates: white rice, white bread, sugar, maida
+- Increase fiber: brown rice, whole wheat, dal, vegetables
+- Eat at regular intervals — avoid skipping meals
+- Portions matter: use the plate method (half vegetables, quarter protein, quarter carbs)
+- Monitor glycemic index of foods
+
+Exercise:
+- 150 minutes of moderate aerobic exercise per week (brisk walking, swimming, cycling)
+- Resistance training 2-3 times per week
+- Avoid prolonged sitting — move every 30 minutes
+
+Monitoring:
+- Check blood sugar as directed by doctor (typically fasting and post-meal)
+- Target HbA1c < 7% for most adults
+- Get annual eye, kidney, and foot exams
+- Monitor blood pressure — target < 130/80 mmHg
+
+## Maternal and Child Health
+
+Antenatal care (ANC) recommendations:
+- Minimum 4 ANC visits during pregnancy (WHO recommends 8)
+- Iron-folic acid supplementation from early pregnancy: 1 tablet daily
+- Tetanus toxoid vaccination: 2 doses
+- Institutional delivery strongly recommended
+
+Danger signs in pregnancy requiring immediate care:
+- Severe headache with visual disturbances
+- Severe abdominal pain
+- Vaginal bleeding
+- High fever
+- Swelling of hands/face
+- Decreased fetal movement
+
+## Tuberculosis (TB)
+
+India accounts for 26% of global TB cases. TB is curable with proper treatment.
+
+Symptoms of TB:
+- Persistent cough for 2+ weeks
+- Blood in sputum
+- Fever, especially evenings
+- Night sweats
+- Unexplained weight loss
+- Loss of appetite
+
+Treatment:
+- DOTS (Directly Observed Treatment, Short-course) available free at all government health centers
+- Treatment duration: 6 months minimum for drug-sensitive TB
+- NEVER stop treatment early — incomplete treatment causes drug resistance
+- Ni-kshay portal provides support and nutritional incentives
+
+Prevention:
+- BCG vaccine at birth
+- Adequate ventilation
+- Cover mouth when coughing/sneezing
+- Early diagnosis and treatment of infected persons
+
+## Mental Health
+
+Common mental health conditions and first steps:
+
+Depression:
+- Persistent sadness, loss of interest, fatigue, sleep changes
+- Help available: Vandrevala Foundation helpline 1860-2662-345 (24/7)
+- iCall helpline: 9152987821
+
+Anxiety:
+- Excessive worry, restlessness, physical tension
+- Breathing exercises: 4-7-8 technique (inhale 4s, hold 7s, exhale 8s)
+- Avoid caffeine, alcohol, and irregular sleep
+
+Emergency mental health (suicidal thoughts):
+- iCall: 9152987821
+- Vandrevala Foundation: 1860-2662-345
+- NIMHANS: 080-46110007
+- Speak to a trusted person immediately
+
+## AYUSH Integration
+
+Government of India promotes integrated medicine:
+- Ayurveda, Yoga & Naturopathy, Unani, Siddha, Homeopathy (AYUSH)
+- AYUSH treatments can complement but should not replace evidence-based care for serious conditions
+- Always inform all your doctors about all medicines you are taking (AYUSH + allopathic)
+- Some herbal medicines interact with prescription drugs
